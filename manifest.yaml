@@ -1,4 +1,4 @@
-author: stvlynn
+author: zhangbububu
 created_at: '2023-12-20T10:00:00.000000Z'
 description:
   en_US: Deploy local models using LM Studio
@@ -16,7 +16,7 @@ meta:
     entrypoint: main
     language: python
     version: '3.10'
-  version: 0.0.2
+  version: 0.0.3
 name: lmstudio
 plugins:
   models:
