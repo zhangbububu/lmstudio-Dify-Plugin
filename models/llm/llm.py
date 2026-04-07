@@ -726,13 +726,26 @@ class LmstudioLargeLanguageModel(LargeLanguageModel):
 
         :return: model schema
         """
+        try:
+            model_mode = self.get_model_mode(model, credentials).value
+        except Exception:
+            model_mode = LLMMode.CHAT.value
+
+        try:
+            context_size = int(credentials.get("context_size", 4096))
+        except (TypeError, ValueError):
+            context_size = 4096
+
         entity = AIModelEntity(
             model=model,
             label=I18nObject(zh_Hans=model, en_US=model),
             model_type=ModelType.LLM,
             features=[],
             fetch_from=FetchFrom.CUSTOMIZABLE_MODEL,
-            model_properties={},
+            model_properties={
+                "mode": model_mode,
+                "context_size": context_size,
+            },
             parameter_rules=[],
         )
 
